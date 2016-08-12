@@ -589,7 +589,7 @@
 				);
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erlangsolutions.ErlangInstaller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
@@ -611,7 +611,7 @@
 				);
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erlangsolutions.ErlangInstaller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
