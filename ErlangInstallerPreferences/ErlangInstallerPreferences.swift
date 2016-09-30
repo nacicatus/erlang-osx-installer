@@ -46,7 +46,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 			let newOriginY = screenRect.origin.y + screenRect.height - window.frame.height
 				- offsetFromTopOfScreen
 			window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
-			window.makeKeyAndOrderFront(window)
+			
 			window.releasedWhenClosed = false
 		}
 	}
