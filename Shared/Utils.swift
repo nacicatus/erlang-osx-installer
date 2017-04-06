@@ -61,6 +61,17 @@ class Utils {
             }
         }
     }
+    static func moveDirectory(urlFrom: URL, urlTo: URL) {
+        if(fileExists(urlFrom)) {
+            let fileManager = FileManager.default
+            do {
+                try fileManager.moveItem(at: urlFrom, to: urlTo)
+            } catch let error as NSError {
+                Utils.log("\(error)")
+                Utils.alert(error.localizedDescription)
+            }
+        }
+    }
 
     static func iconForApp(_ path: String) -> NSImage {
         return NSWorkspace.shared().icon(forFile: path)

@@ -66,8 +66,13 @@ class UserDefaults {
         set { set("defaultRelease", value: newValue as AnyObject?) }
         get { return getString("defaultRelease") ?? defaultReleaseDefault}
     }
-        static var defaultPath: String? {
-        set { set("defaultPath", value: newValue as AnyObject?)}
+    static var defaultPath: String? {
+        set {
+            if let defaultPath = defaultPath, let newValue = newValue {
+                Utils.moveDirectory(urlFrom: URL.init(string: defaultPath)!, urlTo: URL.init(string: newValue)!)
+            }
+            set("defaultPath", value: newValue as AnyObject?)
+        }
         get { return getString("defaultPath") ?? defaultReleasePath}
     }
     
