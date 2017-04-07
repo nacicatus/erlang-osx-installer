@@ -69,7 +69,7 @@ class UserDefaults {
     static var defaultPath: String? {
         set {
             if let defaultPath = defaultPath, let newValue = newValue {
-                Utils.moveDirectory(urlFrom: URL.init(string: defaultPath)!, urlTo: URL.init(string: newValue)!)
+                Utils.moveDirectory(urlFrom: URL(fileURLWithPath: defaultPath), urlTo: URL(fileURLWithPath: newValue))
             }
             set("defaultPath", value: newValue as AnyObject?)
         }

@@ -57,7 +57,12 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
     
     override func controlTextDidEndEditing(_ obj: Notification)
     {
-        UserDefaults.defaultPath = self.instalationFolder.stringValue
+        if self.instalationFolder.stringValue.characters.count == 0 || self.instalationFolder.stringValue == "" {
+            self.instalationFolder.stringValue = UserDefaults.defaultPath!
+        }
+        else {
+            UserDefaults.defaultPath = self.instalationFolder.stringValue
+        }
     }
     
     func updateReleasesForAgent() {

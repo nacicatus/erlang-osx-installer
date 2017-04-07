@@ -115,7 +115,7 @@ class ReleaseManager: NSObject {
         
         try filesToLink.forEach
             {
-                let destination = NSHomeDirectory() + "/.erlangInstaller/" + $0
+                let destination = UserDefaults.defaultPath! + $0
                 
                 do {
                     try fileManager.attributesOfItem(atPath: destination)
