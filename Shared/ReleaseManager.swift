@@ -108,6 +108,16 @@ class ReleaseManager: NSObject {
         }
     }
     
+    static func releaseFromName(name: String) -> Release? {
+        for aRelease in self.releases {
+            if aRelease.key == name {
+                print ("found!")
+                return aRelease.value
+            }
+        }
+        return nil
+    }
+    
     static func makeSymbolicLinks(_ release: Release) throws
     {
         let fileManager = FileManager.default
@@ -118,7 +128,7 @@ class ReleaseManager: NSObject {
                 let destination = UserDefaults.defaultPath! + $0
                 
                 do {
-                    try fileManager.attributesOfItem(atPath: destination)
+                   let a = try fileManager.attributesOfItem(atPath: destination)
                     do {
                         try fileManager.removeItem(atPath: destination);
                     }catch let errorDelete as NSError {
