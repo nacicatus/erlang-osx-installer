@@ -64,25 +64,23 @@ class Utils {
     static func moveDirectory(urlFrom: URL, urlTo: URL) {
         if(fileExists(urlFrom)) {
             let fileManager = FileManager.default
-            
-
+        
             do {
                 try fileManager.moveItem(at: urlFrom, to: urlTo)
                 print("Moved Erlang releases from path \(urlFrom.absoluteString) to \(urlTo.absoluteString)")
                 
-                let newDestination = urlTo.path + "/default"
-            
-                do {
-                    try fileManager.createSymbolicLink(atPath: newDestination, withDestinationPath: newDestination ) // fake symlink
-                }catch let errorExists as NSError {
-                    print("\(errorExists.localizedDescription)")
-                }
-
-                
                 if let defaultReleaseString = UserDefaults.defaultRelease {
                     if let defaultRelease = ReleaseManager.releaseFromName(name: defaultReleaseString) {
                         do {
-                            try ReleaseManager.makeSymbolicLinks(defaultRelease)
+                            //try ReleaseManager.makeSymbolicLinks(defaultRelease)
+                            
+                            do { // FIXME: make one do and multiple catches
+                                let newSymlink = urlTo.path + "/default"
+                                let a = try fileManager.attributesOfItem(atPath: newSymlink)
+                                try fileManager.createSymbolicLink(atPath: newSymlink, withDestinationPath: defaultRelease.binPath )
+                            }catch let errorExists as NSError {
+                                print("\(errorExists.localizedDescription)")
+                            }
                         }catch let error as NSError {
                             Utils.alert(error.localizedDescription)
                             NSLog("Creating Symbolic links failed: \(error.debugDescription)")

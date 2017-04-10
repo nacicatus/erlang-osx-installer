@@ -127,8 +127,8 @@ class ReleaseManager: NSObject {
             {
                 let destination = UserDefaults.defaultPath! + $0
                 
-                do {
-                   let a = try fileManager.attributesOfItem(atPath: destination)
+                do {  // TODO: Make one do and multiple catches.
+                    try fileManager.attributesOfItem(atPath: destination)
                     do {
                         try fileManager.removeItem(atPath: destination);
                     }catch let errorDelete as NSError {
@@ -152,9 +152,14 @@ class ReleaseManager: NSObject {
                 task.launchPath = "/bin/sh"
                 task.arguments = [scriptPath]
                 
+                let pipe = Pipe()
+                task.standardOutput = pipe
+                task.standardError = pipe
                 task.launch()
+                let data = pipe.fileHandleForReading.readDataToEndOfFile()
+                let output = String(data: data, encoding: .utf8)
                 task.waitUntilExit()
-                
+                print ("output: \(output), status: \(task.terminationStatus)")
             
         }
     }
