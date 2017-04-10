@@ -28,7 +28,7 @@ fi
 
 cd ~
 ERLANG_OLD_PATH=$1
-ERLANG_DEFAULT_PATH=$2
+ERLANG_DEFAULT_PATH=$2 # "~/.erlangInstaller/default/bin"
 if [ -f .bash_profile ]; then CONFIG_FILE=".bash_profile";
 else
 CONFIG_FILE=".profile";
