@@ -150,7 +150,7 @@ class ReleaseManager: NSObject {
                 let task = Process()
                 
                 task.launchPath = "/bin/sh"
-                task.arguments = [scriptPath]
+                task.arguments = [scriptPath, release.binPath, ""]
                 
                 let pipe = Pipe()
                 task.standardOutput = pipe
@@ -159,7 +159,7 @@ class ReleaseManager: NSObject {
                 let data = pipe.fileHandleForReading.readDataToEndOfFile()
                 let output = String(data: data, encoding: .utf8)
                 task.waitUntilExit()
-                print ("output: \(output), status: \(task.terminationStatus)")
+                NSLog ("EnsurePATH output: \(output), status: \(task.terminationStatus)")
             
         }
     }

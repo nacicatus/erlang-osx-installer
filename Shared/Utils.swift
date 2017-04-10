@@ -91,7 +91,7 @@ class Utils {
                             do { // FIXME: make one do and multiple catches
                                 let newSymlink = urlTo.path + "/default"
                                 let a = try fileManager.attributesOfItem(atPath: newSymlink)
-                                try fileManager.createSymbolicLink(atPath: newSymlink, withDestinationPath: defaultRelease.binPath )
+                                try fileManager.createSymbolicLink(atPath: newSymlink, withDestinationPath: defaultRelease.releasePath )
                             }catch let errorExists as NSError {
                                 print("\(errorExists.localizedDescription)")
                             }

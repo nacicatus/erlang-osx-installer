@@ -68,6 +68,7 @@ class UserDefaults {
     }
     static var defaultPath: String? {
         set {
+            let oldDefaultPath: String?
             if let defaultPath = defaultPath, let newValue = newValue {
                 Utils.moveDirectory(urlFrom: URL(fileURLWithPath: defaultPath), urlTo: URL(fileURLWithPath: newValue))
             }
@@ -78,6 +79,6 @@ class UserDefaults {
     
     static var dontBotherWithOldReleaseAlert: Bool {
         set { set("dontBotherWithOldReleaseAlert", value: newValue as AnyObject?) }
-        get { return getBool("dontBotherWithOldReleaseAlert") ?? true}
+        get { return getBool("dontBotherWithOldReleaseAlert") ?? false}
     }
 }
